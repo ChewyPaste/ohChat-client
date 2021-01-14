@@ -1,9 +1,0 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer components {
-	.form-input {
-		@apply h-9 min-w-full mb-2 p-2 border border-black rounded-sm;
-	}
-}

@@ -1,49 +1,55 @@
-import { LOGIN, REGISTER, LOGOUT, UPDATE_PROFILE } from '../types/index';
+import { LOGIN, REGISTER, LOGOUT, UPDATE_PROFILE } from '../types/index'
 
 const initialState = {
-	user: JSON.parse(localStorage.getItem('user')) || {},
-	token: localStorage.getItem('token') || '',
-	isLoggedIn: !!localStorage.getItem('user') //DOUBLE BANG (!!) determines whether value is truthy or falsey
-	// isLoggedIn: localStorage.getItem('user') ? true : false
-};
+    // user: JSON.parse(localStorage.getItem('user')) || {},
+    // token: localStorage.getItem('token') || '',
+    // isLoggedIn: !!localStorage.getItem('user'),
+
+    user: {},
+    token: '',
+    isLoggedIn: false
+}
 
 const authReducer = (state = initialState, action) => {
-	const { type, payload } = action;
 
-	switch (type) {
-		case LOGIN:
-			console.log('login action');
-			return {
-				...state,
-				user: payload.user,
-				token: payload.token,
-				isLoggedIn: true
-			};
+    const { type, payload } = action
 
-		case REGISTER:
-			return {
-				...state,
-				user: payload.user,
-				token: payload.token,
-				isLoggedIn: true
-			};
+    switch (type) {
+        case LOGIN:
+            return {
+                ...state,
+                user: payload.user,
+                token: payload.token,
+                isLoggedIn: true
+            }
 
-		case LOGOUT:
-			return {
-				...state,
-				user: {},
-				token: '',
-				isLoggedIn: false
-			};
-		case UPDATE_PROFILE:
-			return {
-				...state,
-				user: payload
-			};
-		default: {
-			return state;
-		}
-	}
-};
+        case REGISTER:
+            return {
+                ...state,
+                user: payload.user,
+                token: payload.token,
+                isLoggedIn: true
+            }
 
-export default authReducer;
+        case LOGOUT:
+            return {
+                ...state,
+                user: {},
+                token: '',
+                isLoggedIn: false
+            }
+
+        case UPDATE_PROFILE:
+            return {
+                ...state,
+                user: payload
+            }
+
+        default: {
+            return state
+        }
+    }
+
+}
+
+export default authReducer
